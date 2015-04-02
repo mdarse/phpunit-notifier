@@ -1,0 +1,20 @@
+{
+    "name": "mdarse/phpunit-notifier",
+    "description": "Desktop notifications for PHPUnit",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mathieu Darse",
+            "email": "hello@mathieudarse.fr"
+        }
+    ],
+    "require": {
+        "jolicode/jolinotif": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPUnitNotifier\\": "src/"
+        }
+    },
+    "minimum-stability": "alpha"
+}
