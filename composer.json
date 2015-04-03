@@ -15,6 +15,5 @@
         "psr-4": {
             "PHPUnitNotifier\\": "src/"
         }
-    },
-    "minimum-stability": "alpha"
+    }
 }
