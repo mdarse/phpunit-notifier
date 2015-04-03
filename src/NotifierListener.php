@@ -4,6 +4,7 @@ namespace PHPUnitNotifier;
 
 use Joli\JoliNotif\Notification;
 use Joli\JoliNotif\NotifierFactory;
+use Joli\JoliNotif\Util\OsHelper;
 use PHPUnit_Framework_Test as Test;
 use PHPUnit_Framework_TestSuite as TestSuite;
 use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
@@ -16,10 +17,14 @@ class NotifierListener extends \PHPUnit_Framework_BaseTestListener
     private $tests = 0;
     private $suites = 0;
     private $ended_suites = 0;
+    private static $is_darwin;
 
     public function __construct()
     {
         $this->notifier = NotifierFactory::create();
+        if (self::$is_darwin === null) {
+            self::$is_darwin = OsHelper::isMacOS();
+        }
     }
 
     public function addError(Test $test, \Exception $e, $time)
@@ -45,21 +50,19 @@ class NotifierListener extends \PHPUnit_Framework_BaseTestListener
             return;
         }
 
-        $notification = new Notification();
-
         $failures = $this->errors + $this->failures;
         if ($failures === 0) {
-            $notification
-                ->setTitle('Tests passed')
-                ->setBody(sprintf('%d/%d tests', $this->tests, $this->tests))
-            ;
+            $title = sprintf('%sSuccess', self::$is_darwin ? '✅ ' : '');
+            $body  = sprintf('%d/%d tests passed', $this->tests, $this->tests);
         } else {
-            $notification
-                ->setTitle('Tests failed')
-                ->setBody(sprintf('%d/%d tests failed', $failures, $this->tests))
-            ;
+            $title = sprintf('%sFailed', self::$is_darwin ? '🚫 ' : '');
+            $body  = sprintf('%d/%d tests failed', $failures, $this->tests);
         }
 
+        $notification = (new Notification())
+            ->setTitle($title)
+            ->setBody($body)
+        ;
         $this->notifier->send($notification);
     }
 
