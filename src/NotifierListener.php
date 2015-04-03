@@ -11,11 +11,11 @@ use PHPUnit_Framework_AssertionFailedError as AssertionFailedError;
 class NotifierListener extends \PHPUnit_Framework_BaseTestListener
 {
     private $notifier;
-    protected $errors = 0;
-    protected $failures = 0;
-    protected $tests = 0;
-    protected $suites = 0;
-    protected $ended_suites = 0;
+    private $errors = 0;
+    private $failures = 0;
+    private $tests = 0;
+    private $suites = 0;
+    private $ended_suites = 0;
 
     public function __construct()
     {
