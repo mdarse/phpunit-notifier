@@ -1,6 +1,7 @@
 {
     "name": "mdarse/phpunit-notifier",
     "description": "Desktop notifications for PHPUnit",
+    "keywords": ["notification", "test", "phpunit"],
     "license": "MIT",
     "authors": [
         {
