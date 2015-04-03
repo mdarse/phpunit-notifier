@@ -1,6 +1,8 @@
 PHPUnit Notifier
 ================
 
+![Demo](http://i.imgur.com/XvDBg1c.gif)
+
 Use [composer](http://getcomposer.org/) to install on your project:
 
 ```shell
