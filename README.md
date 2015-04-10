@@ -24,3 +24,6 @@ Example of PHPUnit XML configuration:
     </listeners>
 </phpunit>
 ```
+
+There is no supported mean to globally setup the notifier for every project, but
+here is a [dirty workaround](https://gist.github.com/mdarse/4028dffd9bb5fdb57889).
